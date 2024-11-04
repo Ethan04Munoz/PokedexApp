@@ -1,20 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// App.js
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
+import PokemonList from './PokemonList';
+import PokemonDetail from './PokemonDetail';
+import Desarrollo from './Desarrollo';
 
+const Stack = createStackNavigator();
+const Drawer = createDrawerNavigator();
+
+// Configuración del Drawer Navigator
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    return (
+        <NavigationContainer>
+            <Drawer.Navigator initialRouteName="PokemonList">
+                <Drawer.Screen 
+                    name="PokemonList" 
+                    component={PokemonList} 
+                    options={{ title: 'Pokédex' }} 
+                />
+                <Drawer.Screen 
+                    name="Desarrollo" 
+                    component={Desarrollo} 
+                    options={{ title: 'Desarrollo' }} 
+                />
+            </Drawer.Navigator>
+        </NavigationContainer>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
